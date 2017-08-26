@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Sign in to Cab4U</h1>
+            <div class="account-wall">
+              <div>
+                <center>
+                  <img class="profile-img" src="../public/Img/userLogo.png" height="100px" width="100px" alt="">
+              </center>
+              </div>
+                <form>
+                <input type="text" class="form-control" placeholder="Email" ng-model="User.Email" required autofocus>
+                <input type="password" class="form-control" placeholder="Password" ng-model="User.Password" required>
+              <center>  <a href="#/Profile" class="btn btn-success" ng-click="LoginUser()" style="margin-top: 20px">Login</a><center>
+                </form>
+            </div>
+            <a href="#/register" class="text-center new-account">Not registered?Create an account </a>
+        </div>
+    </div>
+</div>

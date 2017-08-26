@@ -1,0 +1,48 @@
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading"><center><span style="font-size:20px;">Booking Details</span></center></div>
+    <div class="panel-body">
+      <form id="bookForm">
+          <table class="table table-bordered">
+            <tr>
+              <td class="col-md-4"> Start</td>
+              <td class="col-md-4" id="sp"> {{startPoint}}</td>
+
+            </tr>
+            <tr><td>End</td>
+            <td id="ep">{{endPoint}}</td>
+            </tr>
+            <tr>
+              <td>Date and time</td>
+              <td>{{bookDate|date: "MMM/dd/y hh.mm a"}} {{bookTime}}</td>
+            </tr>
+            <tr>
+              <td >Distance</td>
+              <td >
+            {{di}}
+            </td>
+            </tr>
+            <tr>
+                <td >Time</td>
+              <td>
+              {{tym}}</td>
+            </tr>
+            <tr>
+                <td >Amount</td>
+                <td>{{Tot | number : 2}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">  <center> <button class="btn btn-success" ng-click="confirmBooking()">Confirm Booking</button></center>
+            </tr>
+
+          </table>
+        </form>
+    </div>
+    <div class="panel-footer"><center><span style="font-size:20px;">Give us the chance again to provide you service!!</span></center></div>
+  </div>
+  </div>
+</div>
+</div>

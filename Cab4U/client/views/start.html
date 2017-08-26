@@ -1,0 +1,201 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+
+    <form id="routeForm">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="form-group">
+          <label for="routeStart"><span style="font-size:20px;">Pick up Location<span></label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="routeStart" style="width:60%" name="autocomplete">
+        </div>
+        <div class="form-group">
+          <label for="routeEnd"><span style="font-size:20px">Drop At<span></label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="routeEnd" name="autocomplete" style="width:60%" placeholder="Enter the destination">
+        </div>
+        <div class="form-group">
+          <label for="routeEnd"><span style="font-size:20px">Choose Cab<span></label>
+        </div>
+        <div class="form-group back">
+          <label class="radopt">
+          <input type="radio" value="micro" name="optradio"/>
+          <img src="./public/Img/micro.png" class="img-rounded">
+          <div><center>Micro</center></div>
+          </label>
+          <label class="radopt">
+           <input type="radio" value="mini" name="optradio"/>
+           <img src="./public/Img/mini.png" class="img-rounded">
+             <div><center>Mini</center></div>
+         </label>
+         <label class="radopt">
+          <input type="radio" value="prime" name="optradio"/>
+          <img src="./public/Img/prime.png" class="img-rounded">
+            <div><center>Prime</center></div>
+        </label>
+        <label class="radopt">
+          <input type="radio" value="lux" name="optradio"/>
+          <img src="./public/Img/lux.png" class="img-rounded">
+            <div><center>Lux</center></div>
+        </label>
+       </div>
+
+      <div class="form-group col-xs-10">
+        <button type="button" class="btn btn-success" id="getDiv" ng-click="getEstimate()">Get Estimate of your ride</button>
+      </div>
+   </div>
+  </div>
+  </form>
+</div>
+  <div class="col-md-3">
+    <div class="clear"></div>
+    <div id="map_canvas"></div>
+
+  </div>
+</div>
+<div><br/></div>
+<div class="container">
+<div id="showDur">
+  <table class="table table-bordered" class="col-md-12">
+    <tr>
+      <td class="col-md-6">
+        <div style="font-size:30px" class="glyphicon glyphicon-road"></div>
+        <span class="fontdeco"> &nbsp;Distance</span>
+        <span id="spanDistance" class="fontdeco">
+   </span>
+    </td>
+
+    <td>
+      <span class="fontdeco glyphicon glyphicon-hourglass">Time</span>
+       <span id="spanTime" class="fontdeco"></span></td>
+    </tr>
+
+    <tr >
+        <td colspan="2" class="col-md-6">   <center><button class="btn btn-primary" style="width:30%" ng-click="getFare()">Ride Now</button>
+          <button class="btn btn-success" style="width:30%" data-toggle="modal" data-target="#myModal">Ride Later</button></center></td>
+    </tr>
+
+  </table>
+  <div><br/><br/><br/></div>
+
+  <div class="modal fade" id="myFareModal" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal">&times;</button>
+ <h4 class="modal-title">Fare Details</h4>
+</div>
+<div class="modal-body">
+ <div class="form-group">
+   <div>{{Fare|number:2}}
+   </div>
+  </div>
+</div>
+<div class="modal-footer ">
+<button type="button" class="btn btn-success" ng-click="sendDetails()" ><span class="glyphicon glyphicon-ok-sign"></span> Confirm</button>
+<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+</div>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myfinalModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+       <h4 class="modal-title custom_align" id="Heading"> Congratulations! Booking Details</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+
+<tr>
+  <td>Driver Name</td>
+  <td>{{DriverName}}</td>
+
+</tr>
+<tr>
+  <td>Driver Mobile</td>
+  <td>{{DriverMobile}}</td>
+
+</tr>
+<tr>
+  <td>Pick up</td>
+  <td id="st"></td>
+</tr>
+
+<tr>
+  <td>Drop At</td>
+  <td id="en"></td>
+</tr>
+<tr>
+  <td>Car</td>
+  <td>{{DriverCar}}</td>
+</tr>
+<tr>
+  <td>Cab Number</td>
+  <td>{{DriverCarN}}</td>
+</tr>
+<tr>
+  <td>Total Fare</td>
+  <td id="mon"></td>
+</tr>
+
+</table>
+
+  </div>
+    <div class="modal-footer ">
+    <button type="button" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign"></span>OK</button>
+  </div>
+    </div>
+<!-- /.modal-content -->
+</div>
+  <!-- /.modal-dialog -->
+</div>
+  <div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal">&times;</button>
+ <h4 class="modal-title">Modal Header</h4>
+</div>
+<div class="modal-body">
+ <div class="form-group">
+   <div>
+     <label for="datepicker" >Select Date</label>
+      <input type="text" class="form-control" id="datepicker">
+      <label for="timepicker">Select Time</label>
+     <input id='timepicker' class="form-control" type='text' name='timepicker'/>
+   </div>
+  </div>
+</div>
+<div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+</div>
+</div>
